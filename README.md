@@ -1,0 +1,1 @@
+﻿Read more about the module at: [Gpresult Like Tool For Intune](https://techcommunity.microsoft.com/blog/coreinfrastructureandsecurityblog/gpresult-like-tool-for-intune/4437008)
