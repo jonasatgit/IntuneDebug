@@ -50,7 +50,7 @@ Function Get-ResourceHTMLTables
     foreach ($resourceEntry in ($groupedResources | Sort-Object -Property Name -Descending)) 
     {
         # Split the ResourceType, EnrollmentId from a single string
-        # The format is "EResourceType, EnrollmentId"
+        # The format is "ResourceType, EnrollmentId"
         $tmpSplitVar = $resourceEntry.Name -split ',' # 0 = ResourceType, 1 = EnrollmentId
 
         $tmpResourceType = $tmpSplitVar[0].ToString().Trim()
@@ -75,6 +75,13 @@ Function Get-ResourceHTMLTables
             $htmlBody += "<tr><td style='font-weight: bold;'>EnrollmentId</td><td colspan='3'>$($enrollmentIdString)</td></tr>"
             $htmlBody += "<tr style='border-top: 3px solid #ddd;'><th style='font-weight: bold;'>ResourceTarget ⚙️</th><th>Resource</th><th>Name</th><th>Value</th></tr>"
         }
+        <#
+        elseif ($tmpResourceType -eq 'PassportForWork')
+        {
+            $htmlBody += "<tr><td style='font-weight: bold;'>EnrollmentId</td><td colspan='2'>$($enrollmentIdString)</td></tr>"
+            $htmlBody += "<tr style='border-top: 3px solid #ddd;'><th style='font-weight: bold;'>ResourceTarget ⚙️</th><th>Resource</th><th>Value</th></tr>"           
+        }
+        #>
         else 
         {
             $htmlBody += "<tr><td style='font-weight: bold; width: 500px;'>EnrollmentId</td><td>$($enrollmentIdString)</td></tr>"
@@ -156,6 +163,25 @@ Function Get-ResourceHTMLTables
                 $htmlBody += "<td>$($tmpName)</td>"
                 $htmlBody += "<td>$($tmpFirewallSetting)</td>"
                 $htmlBody += "</tr>"
+            }
+            elseif ($tmpResourceType -eq 'PassportForWork') 
+            {
+                $resourceName = ''
+                #$resourceValue = ''
+                $returnValue = Get-PassportForWorkSettings -ResourceName ($resource.ResourceName) 
+                $stringToReplace = $resource.ResourceName -replace '/', '\'
+                $stringToReplace = [regex]::Escape($stringToReplace)
+
+                
+                $resourceName += "<b>$($resource.ResourceName)</b><br>"
+                foreach ($item in $returnValue) 
+                {
+                    $itemName = $item.Path -replace $stringToReplace, '' # to shorten the path display
+                    #$resourceName += "<br>$($itemName)"
+                    $resourceName += "<br>$itemName<b>    Value: $($item.Value)</b>"
+                }
+
+                $htmlBody += "<tr><td class='setting-col'>$($resourceTargetString)</td><td>$resourceName</td></tr>"           
             }
             else 
             {
