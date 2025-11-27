@@ -50,7 +50,7 @@ function Get-MDMPolicyReport
         [int]$CleanUpDays = 1
     )
 
-    $moduleVersion = '4.1.0'
+    $moduleVersion = '4.1.1'
 
     # Lets cleanup any previous Intune report data
     Invoke-IntuneReportDataCleanup -CleanUpDays $CleanUpDays
@@ -60,6 +60,15 @@ function Get-MDMPolicyReport
 
     $MDMDiagReportXml = Get-IntunePolicyDataFromXML -MDMDiagReportPath $MDMDiagReportPath
     $MDMDiagReportHTMLPath = $MDMDiagReportXml.FileFullName -replace '.xml', '.html'
+
+    if (-not (Test-Path -Path $MDMDiagReportHTMLPath)) 
+    {
+        # Lets thest for a different file name
+        # This might be the case if the report was generated with the settings app or the MDM Diagnostics Tool with differnt parameters
+        # MDMDiagHTMLReport.html
+        # Added the lines based on feedback from: https://github.com/jonasatgit/IntuneDebug/issues/1
+        $MDMDiagReportHTMLPath = $MDMDiagReportHTMLPath -replace 'MDMDiagReport\.html', 'MDMDiagHTMLReport.html'
+    }
 
     if (-Not (Test-Path -Path $MDMDiagReportHTMLPath))
     {

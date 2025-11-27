@@ -12,7 +12,7 @@
 RootModule = 'IntuneDebug.psm1'
 
 # Version number of this module.
-ModuleVersion = '4.1.0'
+ModuleVersion = '4.1.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -101,13 +101,13 @@ PrivateData = @{
         LicenseUri = 'https://github.com/jonasatgit/IntuneDebug?tab=MIT-1-ov-file'
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/jonasatgit/IntuneDebug'
+        ProjectUri = 'https://techcommunity.microsoft.com/blog/coreinfrastructureandsecurityblog/gpresult-like-tool-for-intune/4437008'
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+        IconUri = 'https://raw.githubusercontent.com/jonasatgit/IntuneDebug/main/IntuneDebug/icon.png'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'Added function to get details about PassportForWork policy settings'
+        ReleaseNotes = 'Added function to get details about PassportForWork policy settings. Fixed an issue with path to MDMDiagHTMLReport.html'
 
         # Prerelease string of this module
         # Prerelease = ''
