@@ -98,16 +98,16 @@ PrivateData = @{
         Tags = @('Intune', 'MDM', 'Policy', 'Debugging')
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/jonasatgit/IntuneDebug?tab=MIT-1-ov-file'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/jonasatgit/IntuneDebug'
 
         # A URL to an icon representing this module.
         # IconUri = ''
 
         # ReleaseNotes of this module
-        # ReleaseNotes = ''
+        ReleaseNotes = 'Added function to get details about PassportForWork policy settings'
 
         # Prerelease string of this module
         # Prerelease = ''
