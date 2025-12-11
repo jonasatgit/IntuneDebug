@@ -98,7 +98,7 @@ PrivateData = @{
         Tags = @('Intune', 'MDM', 'Policy', 'Debugging')
 
         # A URL to the license for this module.
-        LicenseUri = 'https://github.com/jonasatgit/IntuneDebug?tab=MIT-1-ov-file'
+        LicenseUri = 'https://raw.githubusercontent.com/jonasatgit/IntuneDebug/main/LICENSE'
 
         # A URL to the main website for this project.
         ProjectUri = 'https://techcommunity.microsoft.com/blog/coreinfrastructureandsecurityblog/gpresult-like-tool-for-intune/4437008'
