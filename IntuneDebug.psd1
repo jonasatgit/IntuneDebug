@@ -12,7 +12,7 @@
 RootModule = 'IntuneDebug.psm1'
 
 # Version number of this module.
-ModuleVersion = '4.1.2'
+ModuleVersion = '4.1.3'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -104,10 +104,16 @@ PrivateData = @{
         ProjectUri = 'https://techcommunity.microsoft.com/blog/coreinfrastructureandsecurityblog/gpresult-like-tool-for-intune/4437008'
 
         # A URL to an icon representing this module.
-        IconUri = 'https://raw.githubusercontent.com/jonasatgit/IntuneDebug/main/IntuneDebug/icon.png'
+        IconUri = 'https://raw.githubusercontent.com/jonasatgit/IntuneDebug/main/Icon.png'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'Added function to get details about PassportForWork policy settings. Fixed an issue with path to MDMDiagHTMLReport.html'
+        
+        ReleaseNotes = @'
+- Fixed icon URI.
+- Added zip and xml file handling when providing existing MDM Diagnostics report. You no longer need to unpack the file first.
+- Minor code improvements and optimizations.
+- Updated module version to 4.1.3.
+'@
 
         # Prerelease string of this module
         # Prerelease = ''

@@ -50,7 +50,7 @@ function Get-MDMPolicyReport
         [int]$CleanUpDays = 1
     )
 
-    $moduleVersion = '4.1.2'
+    $moduleVersion = $moduleVersion = $MyInvocation.MyCommand.Module.Version.ToString()
 
     # Lets cleanup any previous Intune report data
     Invoke-IntuneReportDataCleanup -CleanUpDays $CleanUpDays

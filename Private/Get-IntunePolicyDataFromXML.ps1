@@ -53,8 +53,37 @@ Function Get-IntunePolicyDataFromXML
             return
         }
 
-        $MDMDiagReportXmlPath = '{0}\MDMDiagReport.xml' -f $MDMDiagReportPath
+        # lets test if we have just a path to the XML file, the MDMDiagReport.xml or a zip file
+        if ($MDMDiagReportPath.ToLower().EndsWith('.zip'))
+        {
+            # We have a zip file, lets extract it to a folder
+            $MDMDiagFolder = "$env:PUBLIC\Documents\MDMDiagnostics\$(Get-date -Format 'yyyy-MM-dd_HH-mm-ss')"
 
+            if (-NOT (Test-Path -Path $MDMDiagFolder)) 
+            {
+                New-Item -Path $MDMDiagFolder -ItemType Directory | Out-Null
+            }
+
+            Expand-Archive -Path $MDMDiagReportPath -DestinationPath $MDMDiagFolder -Force
+
+            # Update the path to point to the new folder with the extracted files
+            $MDMDiagReportPath = $MDMDiagFolder
+        }
+
+        # Making sure we have the path to the XML file and not just the folder
+        if ($MDMDiagReportPath.ToLower().EndsWith('MDMDiagReport.xml'))
+        {
+            $MDMDiagReportXmlPath = $MDMDiagReportPath
+        }
+        else
+        {
+            $MDMDiagReportXmlPath = '{0}\MDMDiagReport.xml' -f $MDMDiagReportPath
+        }
+
+        # we also need to update the script variable to use the new path
+        $script:MDMDiagReportPathVariable = $MDMDiagReportPath
+
+        # Make sure the XML file exists
         if (-Not (Test-Path -Path $MDMDiagReportXmlPath))
         {
             Write-Error "The specified MDM Diagnostics Report XML file does not exist: `"$MDMDiagReportXmlPath`""
